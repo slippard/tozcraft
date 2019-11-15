@@ -1,0 +1,12 @@
+.gradle/
+.idea/
+.metadata/
+.settings/
+/bin/
+/build/
+/run/
+.classpath
+.project
+.tozmod.iml
+tozmod_Client.launch
+tozmod_Server.launch
