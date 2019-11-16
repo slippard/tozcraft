@@ -1,8 +1,10 @@
 package com.koubi.tozcraft.util.handlers;
 
 import com.koubi.tozcraft.init.ModItems;
+import com.koubi.tozcraft.init.ModBlocks;
 import com.koubi.tozcraft.util.IHasModel;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.event.RegistryEvent;
@@ -17,10 +19,21 @@ public class RegistryHandler {
 	}
 	
 	@SubscribeEvent
+	public static void onBlockRegister(RegistryEvent.Register<Block> event) {
+		event.getRegistry().registerAll(ModBlocks.BLOCKS.toArray(new Block[0]));
+	}
+	
+	@SubscribeEvent
 	public static void onModelRegister(ModelRegistryEvent event) {
 		for(Item item : ModItems.ITEMS) {
 			if(item instanceof IHasModel) {
 				((IHasModel)item).registerModels();
+			}
+		}
+		
+		for(Block block : ModBlocks.BLOCKS) {
+			if(block instanceof IHasModel) {
+				((IHasModel)block).registerModels();
 			}
 		}
 	}
